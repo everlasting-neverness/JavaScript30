@@ -65,16 +65,17 @@ let sounds = document.querySelectorAll("audio");
 function keyPress(event) {
   console.log(event.keyCode.toString());
   for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].firstElementChild.innerText.toLowerCase() === event.key) {
-      buttons[i].className += " playing";
+    if (buttons[i].getAttribute("data-key") === event.keyCode.toString()) {
+      buttons[i].classList.add("playing");
       for (let x = 0; x < sounds.length; x++) {
         if (sounds[x].getAttribute("data-key") === event.keyCode.toString()) {
           console.log("yes");
           sounds[x].play();
+          setTimeout(function() {
+            buttons[i].classList.remove("playing");
+          }, 50);
         }
       }
-      // This one needs to be set in timeout
-      buttons[i].className = "key";
     }
   }
 }
