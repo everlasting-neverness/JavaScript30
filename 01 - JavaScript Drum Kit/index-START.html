@@ -70,6 +70,7 @@ function keyPress(event) {
       for (let x = 0; x < sounds.length; x++) {
         if (sounds[x].getAttribute("data-key") === event.keyCode.toString()) {
           console.log("yes");
+          sounds[x].currentTime = 0;
           sounds[x].play();
           setTimeout(function() {
             buttons[i].classList.remove("playing");
